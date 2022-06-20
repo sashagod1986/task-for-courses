@@ -12,8 +12,8 @@ public class Main {
         System.out.println("arithmetic="+arithmetic);
         System.out.println("arithmetic="+arithmetic);
         System.out.println("arithmetic="+arithmetic);
-
         System.out.println("arithmetic="+arithmetic);
+        
 
     }
 
