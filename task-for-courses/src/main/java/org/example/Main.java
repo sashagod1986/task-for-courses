@@ -9,7 +9,7 @@ public class Main {
         System.out.println("new courses");
         String arithmetic = ArithmeticObj.nextLine();
         System.out.println("arithmetic="+arithmetic);
-
+123
     }
 
 }
