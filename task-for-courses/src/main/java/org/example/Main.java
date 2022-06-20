@@ -10,6 +10,9 @@ public class Main {
         String arithmetic = ArithmeticObj.nextLine();
         System.out.println("arithmetic="+arithmetic);
         System.out.println("arithmetic="+arithmetic);
+        System.out.println("arithmetic="+arithmetic);
+        System.out.println("arithmetic="+arithmetic);
+
     }
 
 }
