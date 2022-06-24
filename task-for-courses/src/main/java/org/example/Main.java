@@ -2,6 +2,7 @@ package org.example;
 
 import java.text.BreakIterator;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.Scanner;
 
 
@@ -77,13 +78,7 @@ public class Main {
             }
 
 
-            if (floatdigit.length == arithmetikchar.length) {
-                char[] temparray = new char[arithmetikchar.length-1];
-                for (int i=0;i<arithmetikchar.length;i++){
-                    temparray[i] = arithmetikchar[i];
-                }
-                arithmetikchar = temparray;
-            }
+
             for (int i=0;i<arithmetikchar.length;i++){
                 System.out.print(" arithmetic="+arithmetikchar[i]+" ");
             }
