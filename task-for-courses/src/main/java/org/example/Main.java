@@ -18,8 +18,7 @@ public class Main {
         for (int i = 0, k = 0;i<needarray.length; i++) {
             if (i == index) {
                 continue;
-            } else
-                tempArray[k++] = needarray[i];
+            } else tempArray[k++] = needarray[i];
         }
         return tempArray;
     }
