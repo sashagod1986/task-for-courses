@@ -173,7 +173,7 @@ public class Main {
                         String rsresult = new String(rresult);
                         String summary = lsresult + sresult + rsresult;
                         stlinechar = summary.toCharArray();
-                    } else System.out.println("wrong decimal");
+                    }
         return stlinechar;
     }
 
