@@ -125,19 +125,23 @@ public class Main {
                     while (stlinechar[j] != '(') {
                         j--;
                     }
-
-                    stlinechar = removeArrayElementChar(stlinechar, i);
-                    stlinechar = removeArrayElementChar(stlinechar, j);
+                    lbracket = j;
+                    rbracket = i;
+                    i = stlinechar.length;
+                }
+            }
+                    stlinechar = removeArrayElementChar(stlinechar, rbracket);
+                    stlinechar = removeArrayElementChar(stlinechar, lbracket);
                     System.out.println();
-                    System.out.print("lbracket=" + j + " rbracket=" + i + " ");
+                    System.out.print("lbracket=" + lbracket + " rbracket=" + rbracket + " ");
                     System.out.println();
                     System.out.print("stline ");
                     for (int y = 0; y < stlinechar.length; y++) {
                         System.out.print(stlinechar[y]);
                     }
                     System.out.println();
-                    char[] tempc = new char[i - j - 1];
-                    for (int y = j, k = 0; y < i - 1; y++) {
+                    char[] tempc = new char[rbracket - lbracket - 1];
+                    for (int y = lbracket, k = 0; y < rbracket - 1; y++) {
                         tempc[k] = stlinechar[y];
                         k++;
                     }
@@ -151,8 +155,8 @@ public class Main {
                         float result = calculate(tempc);
 
                         System.out.println("result= " + result);
-                        for (int k = j; k < i - 1; k++) {
-                            stlinechar = removeArrayElementChar(stlinechar, j);
+                        for (int k = lbracket; k < rbracket - 1; k++) {
+                            stlinechar = removeArrayElementChar(stlinechar, lbracket);
                         }
                         System.out.println();
                         System.out.print("stlinechar=");
@@ -160,8 +164,8 @@ public class Main {
                             System.out.print(stlinechar[y]);
                         }
                         String sresult = Float.toString(result);
-                        char[] lresult = new char[j];
-                        for (int k = 0; k < j; k++) {
+                        char[] lresult = new char[lbracket];
+                        for (int k = 0; k < lbracket; k++) {
                             lresult[k] = stlinechar[k];
                         }
                         System.out.println();
@@ -170,8 +174,8 @@ public class Main {
                             System.out.print(lresult[y]);
                         }
 
-                        char[] rresult = new char[stlinechar.length - j];
-                        for (int k = j, y = 0; k < stlinechar.length; k++) {
+                        char[] rresult = new char[stlinechar.length - lbracket];
+                        for (int k = lbracket, y = 0; k < stlinechar.length; k++) {
                             rresult[y] = stlinechar[k];
                             y++;
                         }
@@ -199,10 +203,10 @@ public class Main {
                     } else System.out.println("wrong decimal");
 
 
-                }
 
 
-            }
+
+
 
 
 
@@ -218,10 +222,6 @@ public class Main {
         System.out.println("lenght=" + stline.length());
         char[] stlinechar = stline.toCharArray();
 
-
-
-
-
             if (ifHaveElement(stlinechar, '(', ')')) {
 
                 int brackets = 0;                                           // check brackets
@@ -236,9 +236,9 @@ public class Main {
                 for (int y = 0; y < stlinechar.length; y++) {
                     System.out.print(stlinechar[y]);
                 }
-
-                stlinechar = executeBrackets(stlinechar);
-
+                while (ifHaveElement(stlinechar, '(', ')')) {
+                    stlinechar = executeBrackets(stlinechar);
+                }
                 System.out.println();
                 System.out.print("stlinechar1=");
                 for (int y = 0; y < stlinechar.length; y++) {
