@@ -181,6 +181,7 @@ public class Main {
         Scanner stlineObj = new Scanner(System.in); // Create a Scanner object
         System.out.println("Enter arithmetic expression");
         String stline = stlineObj.nextLine();
+        stline = stline.replaceAll(" ","");
         stline = stline.replaceAll("\\)\\(",")*(");
         int digits = digitsQuantity(stline);
         char[] stlinechar = stline.toCharArray();
