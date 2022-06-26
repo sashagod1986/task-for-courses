@@ -54,9 +54,17 @@ public class Main {
                 stlinechar[i] = 'd';
             }
         }
+
         if (stlinechar[0]=='d') stlinechar = removeArrayElementChar(stlinechar, 0);
         stline = new String(stlinechar);
-        stline = stline.replaceAll("dd","d");
+        boolean havedd = true;
+        while (havedd){
+            havedd = false;
+            stline = stline.replaceAll("dd","d");
+            for (int i=0;i<stline.length()-1;i++){
+                if (stline.charAt(i) == 'd' && stline.charAt(i+1) == 'd') havedd = true;
+            }
+        }
         String[] digits = stline.split("d");
         return digits.length;
     }
@@ -173,6 +181,7 @@ public class Main {
         Scanner stlineObj = new Scanner(System.in); // Create a Scanner object
         System.out.println("Enter arithmetic expression");
         String stline = stlineObj.nextLine();
+        stline = stline.replaceAll("\\)\\(",")*(");
         int digits = digitsQuantity(stline);
         char[] stlinechar = stline.toCharArray();
             if (ifHaveElement(stlinechar, '(', ')')) {
