@@ -4,17 +4,30 @@ public class Calc {
     public static void calculate(String stline) {
         stline = stline.replaceAll(" ","");
         stline = stline.replaceAll("\\)\\(",")*(");
-        int digits = Utils.digitsQuantity(stline);
+        int digits = 0;
         char[] stlinechar = stline.toCharArray();
         if (Utils.ifHaveElement(stlinechar, '(', ')')) {
             int brackets = 0;                                           // check brackets
             boolean bracketsB = true;
-            for (int i = 0; i < stlinechar.length; i++) {
-                if (stlinechar[i] == '(') brackets++;
-                if (stlinechar[i] == ')') brackets--;
-                if (brackets < 0) bracketsB = false;
+            boolean bracketsE = true;
+            for (int i = 0; i < stlinechar.length-1; i++) {
+                if (stlinechar[i] == '(' && stlinechar[i+1] == ')'){
+                    bracketsE = false;
+                }
             }
-            if (brackets == 0 && bracketsB) {
+            for (int i = 0; i < stlinechar.length; i++) {
+                if (stlinechar[i] == '('){
+                    brackets++;
+                }
+                if (stlinechar[i] == ')'){
+                    brackets--;
+                }
+                if (brackets < 0){
+                    bracketsB = false;
+                }
+            }
+            if (brackets == 0 && bracketsB && bracketsE) {
+                digits = Utils.digitsQuantity(stline);
                 while (Utils.ifHaveElement(stlinechar, '(', ')')) {
                     stlinechar = ParseBrackets.executeBrackets(stlinechar);
                 }
@@ -25,12 +38,20 @@ public class Calc {
                 } else System.out.println("wrong decimal");
             } else {
                 System.out.println("wrong brackets");
-                if (brackets > 0) System.out.println("extra parenthesis (");
-                if (brackets < 0) System.out.println("extra parenthesis )");
+                if (brackets > 0){
+                    System.out.println("extra parenthesis (");
+                }
+                if (brackets < 0){
+                    System.out.println("extra parenthesis )");
+                }
+                if (!bracketsE){
+                    System.out.println("empty brackets");
+                }
 
             }
         } else {
             if (Utils.mathematicalSymbolCheck(stlinechar)) {
+                digits = Utils.digitsQuantity(stline);
                 float result = Calculation.calculate(stlinechar);
                 System.out.println("result= " + result);
                 System.out.println("digits quantity= "+digits);
