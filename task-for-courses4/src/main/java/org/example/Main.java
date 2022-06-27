@@ -55,7 +55,7 @@ public class Main {
             }
         }
 
-        if (stlinechar[0]=='d') stlinechar = removeArrayElementChar(stlinechar, 0);
+
         stline = new String(stlinechar);
         boolean havedd = true;
         while (havedd){
@@ -65,6 +65,11 @@ public class Main {
                 if (stline.charAt(i) == 'd' && stline.charAt(i+1) == 'd') havedd = true;
             }
         }
+        System.out.println("stline "+stline);
+        stlinechar = stline.toCharArray();
+        if (stlinechar[0]=='d') stlinechar = removeArrayElementChar(stlinechar, 0);
+        if (stlinechar[stlinechar.length-1]=='d') stlinechar = removeArrayElementChar(stlinechar, 0);
+        stline = new String(stlinechar);
         String[] digits = stline.split("d");
         return digits.length;
     }
@@ -187,11 +192,13 @@ public class Main {
         char[] stlinechar = stline.toCharArray();
             if (ifHaveElement(stlinechar, '(', ')')) {
                 int brackets = 0;                                           // check brackets
+                boolean bracketsB = true;
                 for (int i = 0; i < stlinechar.length; i++) {
                     if (stlinechar[i] == '(') brackets++;
                     if (stlinechar[i] == ')') brackets--;
+                    if (brackets < 0) bracketsB = false;
                 }
-                if (brackets == 0) {
+                if (brackets == 0 && bracketsB) {
                 while (ifHaveElement(stlinechar, '(', ')')) {
                     stlinechar = executeBrackets(stlinechar);
                 }
@@ -201,8 +208,10 @@ public class Main {
                         System.out.println("digits quantity= "+digits);
                     } else System.out.println("wrong decimal");
                 } else {
+                    System.out.println("wrong brackets");
                     if (brackets > 0) System.out.println("extra parenthesis (");
                     if (brackets < 0) System.out.println("extra parenthesis )");
+
                 }
                 } else {
                     if (mathematicalSymbolCheck(stlinechar)) {
