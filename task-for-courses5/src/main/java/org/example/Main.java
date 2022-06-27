@@ -9,6 +9,5 @@ public class Main {
         System.out.println("Enter arithmetic expression");
         String stline = stlineObj.nextLine();
         Calc.calculate(stline);
-
     }
 }
