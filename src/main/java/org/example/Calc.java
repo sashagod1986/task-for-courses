@@ -4,6 +4,7 @@ public class Calc {
     public static void calculate(String stline) {
         stline = stline.replaceAll(" ","");
         stline = stline.replaceAll("\\)\\(",")*(");
+        stline = stline.replaceAll("\\+\\-","-");
         int digits = 0;
         char[] stlinechar = stline.toCharArray();
         if (Utils.ifHaveElement(stlinechar, '(', ')')) {
