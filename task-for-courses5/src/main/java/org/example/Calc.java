@@ -15,6 +15,13 @@ public class Calc {
                     bracketsE = false;
                 }
             }
+            if (stlinechar.length <= 3){
+                for (int i=0;i<stlinechar.length-2;i++){
+                    if(stlinechar[i] == '(' && !Character.isDigit(stlinechar[i+1]) && stlinechar[i+2] == ')'){
+                        bracketsE = false;
+                    }
+                }
+            }
             for (int i = 0; i < stlinechar.length; i++) {
                 if (stlinechar[i] == '('){
                     brackets++;
